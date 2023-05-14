@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--size-8);
+  padding-bottom: var(--size-8);
+  gap: var(--size-4);
+}
+
+.heading {
+}
+
+.contents {
+  padding: var(--size-4) var(--size-6);
+}

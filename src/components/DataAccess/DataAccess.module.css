@@ -1,0 +1,64 @@
+.container {
+  width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+}
+
+.header {
+  text-align: right;
+}
+
+.contents {
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-2);
+}
+
+.addDataButton {
+  background-color: var(--indigo-8);
+  border-color: var(--indigo-8);
+}
+
+.dataInfo {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: var(--size-3);
+  background-color: var(--pink-8);
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-2);
+}
+
+.counter {
+  color: var(--gray-2);
+}
+
+.nodataLabel {
+  font-size: var(--size-7);
+  text-align: center;
+}
+
+.datalist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+  list-style: none;
+  padding-left: 0;
+}
+
+.datalist > li {
+  padding: 0;
+  max-inline-size: none;
+}
+
+.card {
+  border-radius: var(--radius-2);
+  padding: var(--size-fluid-3);
+  box-shadow: var(--shadow-2);
+  background-color: var(--stone-10);
+}
