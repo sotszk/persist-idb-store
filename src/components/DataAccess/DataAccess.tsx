@@ -1,9 +1,27 @@
 import * as React from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import { usePersistDataStore } from "../../store";
 
 import styles from "./DataAccess.module.css";
 
+const DATA_LENGTH = 500;
+
 export const DataAccess = () => {
-  const [dataItems, setDataItems] = React.useState([0]);
+  // const dataItems = usePersistDataStore.use.items();
+  const dataItems = usePersistDataStore((state) => state.items);
+  const addItem = usePersistDataStore.use.addItem();
+  const clearItems = usePersistDataStore.use.clearItem();
+
+  React.useEffect(() => {
+    const callback = (evt: StorageEvent) => {
+      console.log(evt);
+    };
+    window.addEventListener("storage", callback);
+    return () => {
+      window.removeEventListener("storage", callback);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -11,17 +29,25 @@ export const DataAccess = () => {
         <div className={styles.buttonContainer}>
           <button
             className={styles.clearDataButton}
-            onClick={() => {
-              setDataItems([]);
-            }}
+            onClick={() => clearItems()}
           >
             Clear data
           </button>
           <button
             className={styles.addDataButton}
             onClick={() => {
-              const newItem = dataItems[dataItems.length - 1] + 1;
-              setDataItems((items) => [...items, newItem]);
+              const arr: number[] = [];
+              for (let index = 0; index < DATA_LENGTH; index++) {
+                arr.push(index);
+              }
+              const createNewItem = () => ({
+                uuid: uuidv4(),
+                data: arr.map(
+                  () =>
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti facilis iusto autem, magnam eum iste. Tempora assumenda vero, excepturi ipsa expedita numquam in cum, eveniet cupiditate, quisquam voluptatum magnam ab."
+                ),
+              });
+              addItem(createNewItem());
             }}
           >
             Add data
@@ -41,7 +67,7 @@ export const DataAccess = () => {
         {dataItems.length > 0 && (
           <ul className={styles.datalist}>
             {dataItems.map((item) => (
-              <li key={item}>
+              <li key={item.uuid}>
                 <div className={styles.card}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Deleniti facilis iusto autem, magnam eum iste. Tempora

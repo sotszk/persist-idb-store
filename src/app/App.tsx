@@ -1,4 +1,4 @@
-import { DataAccess } from "./components/DataAccess";
+import { DataAccess } from "../components/DataAccess";
 
 import styles from "./App.module.css";
 
