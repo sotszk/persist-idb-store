@@ -1,17 +1,14 @@
 import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { usePersistDataStore } from "../../store";
+import { usePersistData } from "../../store";
 
 import styles from "./DataAccess.module.css";
 
 const DATA_LENGTH = 500;
 
 export const DataAccess = () => {
-  // const dataItems = usePersistDataStore.use.items();
-  const dataItems = usePersistDataStore((state) => state.items);
-  const addItem = usePersistDataStore.use.addItem();
-  const clearItems = usePersistDataStore.use.clearItem();
+  const { items: dataItems, addItem, clearItems } = usePersistData();
 
   React.useEffect(() => {
     const callback = (evt: StorageEvent) => {

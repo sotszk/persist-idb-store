@@ -1,1 +1,1 @@
-export { usePersistDataStore } from "./persistDataStore";
+export { usePersistDataStore, usePersistData } from "./persistDataStore";
